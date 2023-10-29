@@ -106,9 +106,9 @@ class PlayCore34Modifier(
                 val innerClassesAttribute = InnerClasses(innerClassesNameIndex, innerClassArray.size, innerClassArray, constantPoolGen.constantPool)
                 listenerClassGen.addAttribute(innerClassesAttribute)
 
-                listenerFuncGen.instructionList.forEachIndexed { index, handle ->
-                    println("${handle.position} ${handle.instruction}")
-                }
+                // listenerFuncGen.instructionList.forEachIndexed { index, handle ->
+                //     println("${handle.position} ${handle.instruction}")
+                // }
 
                 // Remove instructions for calling android/content/Context.registerReceiver:(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
                 val originalInstructionList = listenerFuncGen.instructionList.toList()
