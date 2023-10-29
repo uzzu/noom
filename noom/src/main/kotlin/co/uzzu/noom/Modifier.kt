@@ -103,7 +103,7 @@ class PlayCore34Modifier(
 
                 // Add InnerClasses attributes
                 val innerClassArray = arrayOf(versionInnerClass, versionCodeInnerClass)
-                val innerClassesAttribute = InnerClasses(innerClassesNameIndex, innerClassArray.size, innerClassArray, constantPoolGen.constantPool)
+                val innerClassesAttribute = InnerClasses(innerClassesNameIndex, 2 + 8 * innerClassArray.size, innerClassArray, constantPoolGen.constantPool)
                 listenerClassGen.addAttribute(innerClassesAttribute)
 
                 // listenerFuncGen.instructionList.forEachIndexed { index, handle ->
