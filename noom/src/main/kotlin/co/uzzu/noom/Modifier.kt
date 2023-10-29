@@ -76,9 +76,9 @@ class PlayCore34Modifier(
                 val accessFlagRaw = Const.ACC_PUBLIC or Const.ACC_STATIC
 
                 // Add android.os.Build class to constant pool
-                val buildIndex = constantPoolGen.addClass("android/os/Build")
-                check(buildIndex != -1)
                 val innerClassesNameIndex = constantPoolGen.addUtf8("InnerClasses")
+                check(innerClassesNameIndex != -1)
+                val buildIndex = constantPoolGen.addClass("android/os/Build")
                 check(buildIndex != -1)
 
                 // Add Build.VERSION.SDK_INT to constant pool
