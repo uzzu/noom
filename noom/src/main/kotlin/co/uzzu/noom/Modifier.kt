@@ -23,8 +23,10 @@ import org.apache.bcel.generic.GOTO
 import org.apache.bcel.generic.ICONST
 import org.apache.bcel.generic.IF_ICMPLT
 import org.apache.bcel.generic.INVOKEVIRTUAL
+import org.apache.bcel.generic.InstructionFactory
 import org.apache.bcel.generic.MethodGen
 import org.apache.bcel.generic.POP
+import org.apache.bcel.generic.Type
 import kotlin.experimental.or
 
 private const val ClassesJarPrefix = "classes"
@@ -171,7 +173,8 @@ class PlayCore34Modifier(
                 //     59: iconst_2
                 //     60: invokevirtual #129                // Method android/content/Context.registerReceiver:(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;I)Landroid/content/Intent;
                 //     63: pop
-                listenerFuncGen.instructionList.insert(next, GETFIELD(sdkIntIndex))
+                val instructionFactory = InstructionFactory(listenerClassGen)
+                listenerFuncGen.instructionList.insert(next, instructionFactory.createGetStatic("android/os/Build\$VERSION", "SDK_INT", Type.INT))
                 listenerFuncGen.instructionList.insert(next, BIPUSH(33.toByte()))
                 listenerFuncGen.instructionList.insert(next, IF_ICMPLT(elseHandle))
                 listenerFuncGen.instructionList.insert(next, ALOAD(0))
